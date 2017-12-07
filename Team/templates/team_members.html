@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block stylesheet %}
+    {#    <link rel="stylesheet" href="{% static "css/leave.css" %}">#}
+{% endblock %}
+
+{% block main-head %}
+{% endblock %}
+
+{% block main-sidebar %}
+    <!-- Side Bar -->
+    <nav id="sidebar-main" class="colcol-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a class="nav-link side-bar-menu side-nav " href="{% url 'dashboard:dashboard-opl' %}">
+                    <span class="side-nav"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
+                    Team Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link side-bar-menu side-nav " href="{% url 'team:team' %}">
+                    <span class="side-nav"><i class="fa fa-users" aria-hidden="true"></i></span>
+                    Team Members
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link side-bar-menu side-nav " href="#">
+                    <span class="side-nav"><i class="fa fa-list" aria-hidden="true"></i></span>
+                    Team Logs
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link side-bar-menu side-nav " href="#">
+                    <span class="side-nav"><i class="fa  fa-calendar-plus-o" aria-hidden="true"></i></span>
+                    Requested Leave
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link side-bar-menu" href="#">
+                    <span class="side-nav"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                    Requested Overtime
+                </a>
+            </li>
+
+{#            <li class="nav-item">#}
+{#                <a class="nav-link side-bar-menu" href="#">#}
+{#                    <span class="side-nav"><i class="fa fa-calendar" aria-hidden="true"></i></span>#}
+{#                    Requested Change of Schedule#}
+{#                </a>#}
+{#            </li>#}
+
+            <li class="nav-item">
+                <a class="nav-link side-bar-menu" href="#">
+                    <span class="side-nav"><i class="fa fa-user-times" aria-hidden="true"></i></span>
+                    Requested for Manual Clock In
+                </a>
+            </li>
+
+
+        </ul>
+    </nav>
+    <!-- Side Bar end -->
+{% endblock %}
+
+
+
+{% block main-body %}
+    <div class="card" style="margin-top: 3em; margin-left: 4%; margin-right: 4%;background-color: #F8F8F8;">
+        <div class="card-header">
+            <span class="card-head-style">
+                <i class="fa fa-th-large" aria-hidden="true" style="padding-right: .5em;"></i>
+                Team Members
+            </span>
+        </div>
+
+        <div class="card-body">
+            <button class="btn btn-success btn-lg">
+                Add new team member
+            </button>
+
+            <table id="leave_table" class="display" cellspacing="0" width="100%" style="margin-top: 3em;">
+                <thead>
+                <tr>
+                    <th scope="col">Date Added</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">ID Number</th>
+                    <th scope="col">Time Schedule</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+    {#    <script src="{% static "js/leave.js" %}"></script>#}
+    <script type="text/javascript">
+        {#        jquery_run('{% url "leave:leave_create" %}');#}
+    </script>
+{% endblock %}

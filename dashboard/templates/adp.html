@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/leave.css" %}">
+{% endblock %}
+
+{% block main-head %}
+    <a class="navbar-brand" href="{% url 'dashboard:dashboard-hr' %}" style="width:20%;">
+        <img src="{% static "img/motime-logo-solid-01.png" %}" alt="MoTime" style="width:17em;">
+    </a>
+{% endblock %}
+
+{% block main-sidebar %}
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu side-nav " href="{% url 'dashboard:dashboard-hr' %}">
+                <span class="side-nav"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
+                HR Dashboard
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu side-nav " href="#">
+                <span class="side-nav"><i class="fa fa-list" aria-hidden="true"></i></span>
+                Employee Lists
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu side-nav " href="{% url 'dashboard:adp-view' %}">
+                <span class="side-nav"><i class="fa  fa-list" aria-hidden="true"></i></span>
+                ADP Report
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu side-nav " href="#">
+                <span class="side-nav"><i class="fa  fa-calendar-plus-o" aria-hidden="true"></i></span>
+                Add Employee
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu" href="#">
+                <span class="side-nav"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                Departments
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu" href="#">
+                <span class="side-nav"><i class="fa fa-user-times" aria-hidden="true"></i></span>
+                Holidays
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block main-body %}
+    <div class="row row-panel-top row-panel-top">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-big-con-adp">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Adp Report
+                    </h3>
+                </div>
+                {# ADP form#}
+                <div class="panel-body">
+                    <button class="btn btn-primary btn-alingment" type="button"
+                            data-toggle="collapse" data-target="#collapseExample"
+                            aria-expanded="false" aria-controls="collapseExample">
+                        Generate ADP
+                    </button>
+
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body" style="background-color: #F8F8F8;">
+                            <form method="POST" id="lv-form">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="form-group col-sm-12">
+                                        {#                                        <label for="input_lv_from" style="font-weight: 500;">Leave From:</label>#}
+                                        {#                                        <input type="text" id="input_lv_from" style="" required>#}
+                                        {##}
+                                        {#                                        <label for="input_lv_to" style="font-weight: 500;">Leave To:</label>#}
+                                        {#                                        <input type="text" id="input_lv_to" style="" required>#}
+                                        {##}
+                                        {#                                        <label for="input_lv_type" style="font-weight: 500; padding-left: 1em;">Leave#}
+                                        {#                                            Type:</label>#}
+                                        {#                                        <select id="input_lv_type" class="custom-select">#}
+                                        {#                                            <option selected value="start">Select type of leave</option>#}
+                                        {#                                            <option value="VL">Vacation Leave</option>#}
+                                        {#                                            <option value="SL">Sick Leave</option>#}
+                                        {#                                            <option value="EL">Emergency Leave</option>#}
+                                        {#                                            <option value="PL">Paternity Leave</option>#}
+                                        {#                                            <option value="ML">Maternity Leave</option>#}
+                                        {#                                        </select>#}
+                                        {##}
+                                        {#                                        <label for="input_shift"#}
+                                        {#                                               style="font-weight: 500; padding-left: 1em;">Shift:</label>#}
+                                        {#                                        <select id="input_shift" class="custom-select">#}
+                                        {#                                            <option selected value="start">Choose a shift</option>#}
+                                        {#                                            <option value="wd">Whole Day</option>#}
+                                        {#                                            <option value="hd">Half Day</option>#}
+                                        {#                                        </select>#}
+                                        {##}
+                                        {#                                        <button class="btn btn-success" type="submit" style="">Request</button>#}
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    {# ADP Table #}
+                    <table id="adp_table" class="display" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th scope="col">Employee ID</th>
+
+                            <th scope="col">LWOP</th>
+                            <th scope="col">Tardy</th>
+                            <th scope="col">UnderTime</th>
+                            <th scope="col">Overtime</th>
+                            <th scope="col">Night Diff</th>
+
+                            <th scope="col">Legal Holiday</th>
+                            <th scope="col">Legal Holiday ND</th>
+                            <th scope="col">Legal Holiday OT</th>
+                            <th scope="col">Legal Holiday RDND</th>
+                            <th scope="col">Legal Holiday RDOT</th>
+
+                            <th scope="col">Special Holiday</th>
+                            <th scope="col">Special Holiday ND</th>
+                            <th scope="col">Special Holiday OT</th>
+                            <th scope="col">Special Holiday RNND</th>
+                            <th scope="col">Special Holiday RDOT</th>
+                        </tr>
+                        </thead>
+
+{#                        {% for leave in emp_leave %}#}
+                            <tr>
+                                <td></td>
+
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+{#                        {% endfor %}#}
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+    <script src="{% static "js/leave.js" %}"></script>
+    <script type="text/javascript">
+        jquery_run('{% url "leave:leave_create" %}');
+        $(document).ready(function () {
+            $('#adp_table').DataTable({});
+        });
+    </script>
+{% endblock %}

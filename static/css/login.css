@@ -1,0 +1,44 @@
+body {
+    background-color: #191919;
+}
+
+label {
+    color: #fff;
+    font-weight: 700;
+}
+
+#con-main-body {
+    margin-top: 10%;
+}
+
+#btn-login {
+    margin-top: 1em;
+}
+
+#con-forgot-pass {
+    text-align: right;
+    margin-top: 1em;
+}
+
+#form-g-pass {
+    margin-top: 1em;
+}
+
+.icon-style {
+    background-color: #6144B6;
+    color: #fff;
+    border: #6144B6;
+}
+
+#con-ack {
+    text-align: center;
+    margin-top: 2em;
+}
+
+.ack-style {
+    color: #626C72;
+}
+
+#link-forgot-pass {
+    color: #ffffff;
+}

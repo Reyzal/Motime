@@ -1,0 +1,20 @@
+
+
+{% extends 'base.html' %}
+
+
+{% block main-body %}
+    <h2>Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+{% endblock %}
+
+{#username = models.CharField(max_length=254, unique=True)#}
+{#first_name = models.CharField(max_length=254, blank=True)#}
+{#last_name = models.CharField(max_length=254, blank=True)#}
+{#email = models.EmailField(blank=True, unique=True)#}
+{#emp_id = models.IntegerField(blank=True, unique=True)#}
+{#first_time_login = models.BooleanField(default=True)#}

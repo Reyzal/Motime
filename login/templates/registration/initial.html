@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{% static "img/favicon.png" %}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'packages/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'packages/font-aswesome/css/font-awesome.min.css' %}">
+
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+    <link rel="stylesheet" href="{% static "css/initial.css" %}">
+</head>
+
+<title>MoTime</title>
+
+<body>
+
+<div class="container" id="con-main-inital">
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6" style="">
+            <img class="img-responsive" id="img-logo" src="{% static "img/motime-gif2.gif" %}" alt="MoTime">
+
+            <div id="box-main">
+                <label class="text-align">TODAY IS</label>
+                <div class="date-time" id="MyDateTimeDisplay"></div>
+                <div class="date-time"><label style="color:#0AA957;">{{ fulldatetime }}</label></div>
+                <div class="custom-box">
+                    <img id="profile-pic" class="img-responsive" src="{{ emp_details.profile_pic.url }}" alt="profile">
+
+                    <div id="box-wrapper">
+                        <label class="box-wrapper-text">Good Day,</label>
+                        <label class="box-wrapper-text" style="color:#FEC107">
+                            {{ user.get_full_name }}
+                        </label>
+                        <label class="box-wrapper-text">!</label>
+                    </div>
+
+                    <div id="box-wrapper2">
+                        <label>YOUR SCHEDULE FOR TODAY IS</label>
+                    </div>
+
+                    <div id="box-wrapper2">
+                        <label class="sched-text">{{ emp_sched }}</label>
+                    </div>
+
+                </div>
+
+                <div id="box-wrapper3">
+                    <form action="{% url 'login:clockin' %}" method="POST" id="btn_initial" class="form-horizontal">
+                        {% csrf_token %}
+                        <button id="btn_clockin" class="btn btn-success btn-lg" value="Clock In" type="submit">
+                            Clock In
+                        </button>
+                    </form>
+                    <a id="link-proceed" href="{% url 'dashboard:dashboard' %}">Proceed without clocking in</a><br/>
+                    <a id="link-logout" href="{% url 'login:logout' %}">Log out</a>
+                </div>
+                <div class="credits">
+
+                    <br/>
+                    <label id="lbl-ackw2">Developed by Operational Excellence Team</label>
+                    <label id="lbl-ackw2">For any issues, please contact <a href="#">Arturo Solito IV</a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# jQuery first, then Popper.js, then Bootstrap JS #}
+<script src="{% static 'packages/jquery/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'packages/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'packages/jquery/Popper.js' %}"></script>
+
+{# Manual javas script #}
+<script type="text/javascript" src="{% static "js/function.js" %}"></script>
+<script type="text/javascript" src="{% static "js/base.js" %}"></script>
+
+<script type="text/javascript">
+    initialize_btn({{ action_flag }});
+    {#    BtnControl();#}
+</script>
+</body>
+
+</html>

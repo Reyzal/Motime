@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/png" href="{% static "img/favicon.png" %}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'packages/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'packages/font-aswesome/css/font-awesome.min.css' %}">
+
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+</head>
+
+<title>MoTime</title>
+
+<body>
+
+<div class="container" id="con-main-body">
+    {# Logo #}
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <img class="img-responsive" src="{% static "img/motime-gif2.gif" %}" alt="MoTime">
+        </div>
+    </div>
+
+    {# Login Form #}
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <form  method="POST">
+                {% csrf_token %}
+
+                {# Username #}
+                <div class="form-group">
+                    <label for="inp_user">EMAIL ADDRESS</label>
+                    <div class="input-group">
+                        <div class="input-group-addon icon-style">
+                            <span class="icon-style-bg"><i class="fa fa-user icon-style" aria-hidden="true"></i></span>
+                        </div>
+                        <input id="inp_user" class="form-control" type="text" name="username" placeholder="Username"
+                               required>
+                    </div>
+                </div>
+
+                {# Password #}
+                <div class="form-group" id="form-g-pass">
+                    <label for="inp_pass">PASSWORD</label>
+                    <div class="input-group">
+                        <div class="input-group-addon icon-style">
+                            <span class="icon-style-bg"><i class="fa fa-lock icon-style" aria-hidden="true"></i></span>
+                        </div>
+                        <input id="inp_pass" class="form-control" type="password" name="password" placeholder="password"
+                               required>
+                    </div>
+
+                    {# Forgot Password #}
+                    <div id="con-forgot-pass">
+                        <a href="{% url 'login:password_reset' %}" id="link-forgot-pass">Forgot password?</a>
+                    </div>
+
+                    {# Submit button #}
+                    <button id="btn-login" type="submit" class="btn btn-success btn-block" name="button">
+                        Login
+                    </button>
+
+                    {# Acknowledgement #}
+                    <div id="con-ack">
+                        <span class="ack-style">Developed by Operational Excellence Team <br></span>
+                        <span class="ack-style">For any issues, please contact
+                            <a href="mailto:arturo.solito@mopro.com?subject=Questions/Comments">Arturo Solito IV</a>
+                        </span>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{# jQuery first, then Popper.js, then Bootstrap JS #}
+<script src="{% static 'packages/jquery/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'packages/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'packages/jquery/Popper.js' %}"></script>
+
+<script type="text/javascript" src="{% static "js/function.js" %}"></script>
+<script type="text/javascript" src="{% static "js/base.js" %}"></script>
+
+<script type="text/javascript">
+    showTime();
+    BtnControl();
+</script>
+</body>
+
+</html>

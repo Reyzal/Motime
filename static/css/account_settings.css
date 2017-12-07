@@ -1,0 +1,40 @@
+.lbl-account-settings {
+    font-weight: 600;
+}
+
+.inpt-account-settings {
+    padding-left: 10px;
+    width: 15em;
+}
+
+.container-emp-details {
+    width: 80%;
+    max-width: 88%;
+}
+
+.container-emp-pic {
+    width: 10%;
+    max-width: 10%;
+}
+
+.profile-pic-settings {
+    width: 9em;
+    height: 9em;
+    border: 3px solid;
+    border-radius: 50%;
+    position: relative;
+    background-color: #191919;
+}
+
+.inpt-file {
+    position: relative;
+    top: .5em;
+    right: 10em;
+    width: 15em;
+}
+
+.btn-upload {
+    position: relative;
+    right: 4em;
+    top: 2em;
+}

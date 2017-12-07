@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/timesched.css" %}">
+{% endblock %}
+
+{% block main-head %}
+{% endblock %}
+
+{% block main-body %}
+    <div class="card" style="margin-top: 3em; margin-left: 4%; margin-right: 4%;background-color: #F8F8F8;">
+        <div class="card-header">
+            <span class="card-head-style">
+                <i class="fa fa-th-large" aria-hidden="true" style="padding-right: .5em;"></i>
+                Request Schedule
+            </span>
+        </div>
+
+
+        <p>
+            <button class="btn btn-primary btn-alingment" type="button"
+                    data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">
+                Request Time Schedule
+            </button>
+        </p>
+
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body" style="background-color: #F8F8F8;">
+                <form method="POST" id="lv-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="form-group col-sm-12">
+                            <label for="input_lv_type" style="font-weight: 500; padding-left: 1em;">
+                                Schedule Type:
+                            </label>
+                            <select id="input_lv_type" class="custom-select">
+                                <option selected value="start">Select type of leave</option>
+                                <option value="vl">Vacation Leave</option>
+                                <option value="sl">Sick Leave</option>
+                                <option value="el">Emergency Leave</option>
+                                <option value="pl">Paternity Leave</option>
+                                <option value="ml">Maternity Leave</option>
+                            </select>
+
+                            <label for="text_com" style="font-weight: 500; padding-left: 1em;">
+                                Comment:
+                            </label>
+                            <textarea class="comment-text" name="" id="text_com" cols="30" rows="3"></textarea>
+
+                            <button class="btn btn-success" type="submit" style="">Request</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="card-body">
+            <table id="ot_table" class="display" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Shift Code</th>
+                    <th>Start Schedule</th>
+                    <th>End Schedule</th>
+                    <th>First Rest Day</th>
+                    <th>Second Rest Day</th>
+                </tr>
+                </thead>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+    <script src="{% static "js/timesched.js" %}"></script>
+    {#    <script type="text/javascript">#}
+    {#        jquery_run('{% url "leave:leave_create" %}');#}
+    {#    </script>#}
+{% endblock %}

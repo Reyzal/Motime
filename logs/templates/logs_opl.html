@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/logs.css" %}">
+{% endblock %}
+
+{% block main-head %}
+    <a class="navbar-brand" href="{% url 'dashboard:dashboard-opl' %}" style="width:20%;">
+        <img src="{% static "img/motime-logo-solid-01.png" %}" alt="MoTime" style="width:17em;">
+    </a>
+{% endblock %}{% block main-sidebar %}
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu side-nav " href="{% url 'dashboard:dashboard-opl' %}">
+                <span class="side-nav"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
+                Team Dashboard
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu side-nav " href="{% url 'logs:logs_opl' %}">
+                <span class="side-nav"><i class="fa fa-list" aria-hidden="true"></i></span>
+                Team Logs
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu side-nav " href="{% url 'leave:leave_opl$' %}">
+                <span class="side-nav"><i class="fa  fa-calendar-plus-o" aria-hidden="true"></i></span>
+                Requested Leave
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu" href="{% url 'overtime:overtime-opl' %}">
+                <span class="side-nav"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                Requested Overtime
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu" href="#">
+                <span class="side-nav"><i class="fa fa-user-times" aria-hidden="true"></i></span>
+                Requested Manual Time in
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+
+{% block main-body %}
+    <div class="row row-panel-top">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-big-con">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Team Logs
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <table id="logs_table" class="display" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Date Time In</th>
+                            <th>Time In</th>
+                            <th>Time Out</th>
+                            <th>Start Break</th>
+                            <th>End Break</th>
+                            <th>Overtime</th>
+                            <th>Night Diff</th>
+                            <th>Undertime</th>
+                            <th>Absences</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for logs in emp_logs %}
+                            <tr>
+                                <td>{{ logs.log_date }}</td>
+                                <td>{{ logs.log_time }}</td>
+                                <td>{{ logs.log_out }}</td>
+                                <td>{{ logs.start_break }}</td>
+                                <td>{{ logs.end_break }}</td>
+                                <td>{{ logs.overtime }}</td>
+                                <td>{{ logs.night_def }}</td>
+                                <td>{{ logs.undertime }}</td>
+                                <td>{{ logs.lwop }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#logs_table').DataTable({});
+        });
+    </script>
+{% endblock %}
+

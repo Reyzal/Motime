@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/leave.css" %}">
+{% endblock %}
+
+{% block main-head %}
+{% endblock %}
+
+{% block main-body %}
+    <div class="row row-panel-top">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-big-con">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Overtime
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {# Overtime form #}
+                    <button class="btn btn-primary btn-alingment" type="button"
+                            data-toggle="collapse" data-target="#collapseExample"
+                            aria-expanded="false" aria-controls="collapseExample">
+                        Request Overtime
+                    </button>
+
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body" style="background-color: #F8F8F8;">
+                            <form method="POST" id="ot-form">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="form-group col-sm-12">
+                                        <label for="input_datepicker" style="font-weight: 500;">Date Request:</label>
+                                        <input type="text" id="input_datepicker" style="" required>
+
+                                        <label for="input_ot_type" style="font-weight: 500; padding-left: 1em;">Overtime
+                                            Type:</label>
+                                        <select id="input_ot_type" class="custom-select">
+                                            <option selected value="start">Select type of shift</option>
+                                            <option value="Pre-Shift">Pre-Shift</option>
+                                            <option value="Post-Shift">Post-Shift</option>
+                                            <option value="RD">RD</option>
+                                        </select>
+
+                                        <label for="input_hrs" style="font-weight: 500; padding-left: 1em;">Overtime
+                                            Hrs:</label>
+                                        <select id="input_hrs" class="custom-select">
+                                            <option selected value="00">0</option>
+                                            <option value="01">1</option>
+                                            <option value="02">2</option>
+                                            <option value="03">3</option>
+                                            <option value="04">4</option>
+                                        </select>
+
+                                        <button class="btn btn-success" type="submit" style="">Request</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    {# Overtime Table #}
+                    <table id="ot_table" class="display" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th scope="col">Overtime Type</th>
+                            <th scope="col">Overtime Date</th>
+                            <th scope="col">Hrs</th>
+                            <th scope="col">Overtime Date Request</th>
+                            <th scope="col">Overtime Approve</th>
+                        </tr>
+                        </thead>
+
+                        {% for ot in emp_ot %}
+                            <tr>
+                                <td>{{ ot.ot_type }}</td>
+                                <td>{{ ot.ot_date }}</td>
+                                <td>{{ ot.ot_hrs }}</td>
+                                <td>{{ ot.ot_date_request }}</td>
+                                <td>{{ ot.ot_approved_desc }}</td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static "js/overtime.js" %}"></script>
+    <script type="text/javascript">
+        jquery_run('{% url "overtime:overtime_create" %}');
+        $(document).ready(function () {
+            $('#ot_table').DataTable({});
+        });
+    </script>
+{% endblock %}

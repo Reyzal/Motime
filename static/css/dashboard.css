@@ -1,0 +1,177 @@
+.canvasjs-chart-credit {
+    /*display: none!important;*/
+}
+
+.class-box {
+    background-color: #fff;
+    max-width: 25%;
+    border: 2px solid #E8E8E8;
+    padding: 0em;
+    margin-left: 5%;
+    border-radius: 2%;
+}
+
+.class-box-progress {
+    background-color: #fff;
+    max-width: 85%;
+    border: 2px solid #E8E8E8;
+    padding: 0em;
+    margin-left: 5%;
+    margin-top: 2%;
+    border-radius: 2%;
+}
+
+.custom-label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    color: #6F58BB;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.custom-label-absent {
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-size: 3em;
+    font-weight: 700;
+    position: relative;
+    left: 1.1em;
+}
+
+.custom-label-days {
+    font-size: .5em !important;
+    font-weight: 100 !important;
+}
+
+.list-no-border {
+    border: 0 solid rgba(0, 0, 0, .125);
+}
+
+.card-dashboard-summary {
+    margin-top: 3em;
+    /*margin-left: 4%;*/
+    /*margin-right: 4%;*/
+    margin-left: 7%;
+    margin-right: 7%;
+    background-color: #F8F8F8;
+    /*height: 75%;*/
+    /*height: 55%;*/
+}
+
+.row-logs-links {
+    padding-bottom: 2em;
+    height: 70%;
+    /*height: 50%;*/
+}
+
+.icon-panel-late {
+    padding-left: .3em;
+    font-size: 1.7em;
+    color: #FFCC00;
+}
+
+.icon-panel-undertime {
+    padding-left: .3em;
+    font-size: 1.7em;
+    color: #FF9900;
+}
+
+.icon-panel-nightdiff {
+    padding-left: .3em;
+    font-size: 1.7em;
+    color: #336688;
+}
+
+.icon-panel-work {
+    padding-left: .3em;
+    font-size: 1.7em;
+    color: #17AB58;
+}
+
+.icon-panel-night {
+    padding-left: .3em;
+    font-size: 1.7em;
+    color: #4356A6;
+}
+
+.icon-panel-overtime-opl {
+    padding-left: .3em;
+    font-size: 1.7em;
+    color: #65479C;
+}
+
+.icon-panel-absences {
+    padding-left: .3em;
+    font-size: 1.7em;
+    color: #F1582B;
+}
+
+.icon-panel-leave {
+    padding-left: .3em;
+    font-size: 1.7em;
+    color: #171717;
+}
+
+.icon-panel-late {
+    padding-left: .3em;
+    font-size: 1.7em;
+    color: #F8981C;
+}
+
+.text-porg-style-header {
+    margin-left: 1em;
+    color: #6145B6;
+}
+
+.text-porg-style {
+    margin-left: 1.5em;
+    color: #6145B6;
+}
+
+.prog-bar-work {
+    background-color: #17AB58;
+}
+
+.prog-bar-overtime-opl {
+    background-color: #65479C;
+}
+
+.prog-bar-late {
+    background-color: #ECECEC;
+}
+
+.prog-bar-night {
+    background-color: #2741AA;
+}
+
+.prog-bar-nightdiff {
+    background-color: #336688;
+}
+
+.prog-bar-undertime {
+    background-color: #FF9900;
+}
+
+.prog-bar-absences {
+    background-color: #F1582B;
+}
+
+.prog-bar-absences {
+    background-color: #F1582B;
+}
+
+.prog-bar-leave {
+    background-color: #171717;
+}
+
+.prog-bar-late {
+    background-color: #F8981C;
+}
+
+@media only screen and (max-width: 1366px) {
+
+    .custom-label {
+        font-size: 1em;
+    }
+
+}

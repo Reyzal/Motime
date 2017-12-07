@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/dashboard.css" %}">
+{% endblock %}
+
+{% block main-body %}
+
+    {# Summary #}
+    <div class="row row-panel-top">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-big-con">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Summary
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {# pie chart #}
+                    <div class="col-md-6 row-chart">
+                        <canvas id="pei_summary"></canvas>
+                    </div>
+
+                    {# cards #}
+                    <div class="col-md-6 row-display-none">
+                        <div class="row">
+                            {# Tardy #}
+                            <div class="col-md-3 class-box">
+                                <div style="margin-top: 15px;">
+                                    <i class="fa fa-clock-o icon-panel-late" aria-hidden="true">
+                                    </i>
+                                    <label class="custom-label">LATE</label>
+                                    <div class="row">
+                                        <label class="custom-label-absent">
+{# {{ tardy }}#}                            8
+                                            <span class="custom-label-days">hrs</span>
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            {# Night Diff #}
+                            <div class="col-md-3 class-box">
+                                <div style="margin-top: 15px;">
+                                    <i class="fa fa-clock-o icon-panel-nightdiff" aria-hidden="true">
+                                    </i>
+                                    <label class="custom-label">Night Diff</label>
+                                    <div class="row">
+                                        <label class="custom-label-absent">
+{# {{ night_dif }}#}                        25
+                                            <span class="custom-label-days">hrs</span>
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            {# Undertime #}
+                            <div class="col-md-3 class-box">
+                                <div style="margin-top: 15px;">
+                                    <i class="fa fa-clock-o icon-panel-undertime" aria-hidden="true">
+                                    </i>
+                                    <label class="custom-label">Undertime</label>
+                                    <div class="row">
+                                        <label class="custom-label-absent">
+{# {{ undertime }}#}                        4
+                                            <span class="custom-label-days">hrs</span>
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {# Progression bar #}
+                        <div class="row">
+                            <div class="class-box-progress">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-offset-0">
+                                        <h4 class="text-porg-style-header">Types</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="text-porg-style">Late</p>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="progress">
+                                            <div class="progress-bar prog-bar-late" role="progressbar"
+                                                 aria-valuenow="20"
+                                                 aria-valuemin="8" aria-valuemax="100" style="width: 8%;">
+                                                8%
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="text-porg-style">Night Diff</p>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="progress">
+                                            <div class="progress-bar prog-bar-nightdiff" role="progressbar"
+                                                 aria-valuenow="5"
+                                                 aria-valuemin="25" aria-valuemax="100" style="width: 25%;">
+                                                25%
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="text-porg-style">Undertime</p>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="progress">
+                                            <div class="progress-bar prog-bar-undertime" role="progressbar"
+                                                 aria-valuenow="5"
+                                                 aria-valuemin="4" aria-valuemax="100" style="width: 4%;">
+                                                4%
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Logs #}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default panel-small-log">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Logs
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Time</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for log_tempalte in logs %}
+                            <tr>
+                                <td>{{ log_tempalte.time_action }}</td>
+                                <td>{{ log_tempalte.user_action }}</td>
+                                <td>{{ log_tempalte.date_action }}</td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <a href="{% url 'logs:logs' %}">View All logs</a>
+                </div>
+            </div>
+        </div>
+
+        {# Quick Links #}
+        <div class="col-md-6">
+            <div class="panel panel-default panel-small-quicklinks">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Quick Links
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item list-no-border">
+                            <a href="{% url 'manualclockin:manualclockin' %}">Request Manual Clock-in</a>
+                        </li>
+                        <li class="list-group-item list-no-border">
+                            <a href="{% url 'leave:leave' %}">Request Leave</a>
+                        </li>
+                        <li class="list-group-item list-no-border">
+                            <a href="{% url 'overtime:overtime' %}">Request Overtime</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+    <script type="text/javascript" src="{% static "js/dashboard.js" %}"></script>
+    <script type="text/javascript">
+        pie_chart();
+    </script>
+{% endblock %}

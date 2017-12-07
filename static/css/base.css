@@ -1,0 +1,345 @@
+/*main container CSS*/
+.container {
+    padding: 0;
+}
+
+body {
+    color: #000000;
+    background: #ECECEC;
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.471;
+    overflow: hidden;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    height: 100%
+}
+
+/* Side menu */
+.container.side-bar-container {
+    width: 15%;
+    height: 100%;
+    padding: 0;
+    float: left;
+    position: fixed;
+    background-color: #F8F8F8 !important;
+    z-index: 1;
+    margin-top: -1.4em;
+}
+
+.side-bar-menu {
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #000;
+    overflow: hidden;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.side-bar-menu:hover {
+    background: linear-gradient(to right, #6832B8, #384AC8);
+    color: #ffffff;
+}
+
+.side-nav {
+    margin-right: 11px;
+    width: 100%;
+}
+
+/*style for navigation side bar*/
+.nav-list-side {
+    width: 100%;
+}
+
+.nav-pills > li > a {
+    border-radius: 0;
+}
+
+/*Header CSS*/
+.navbar.fix-nav {
+    border-radius: 0;
+    background: #191919;
+    height: 8em;
+    z-index: 2;
+}
+
+.navbar-brand > img {
+    position: relative;
+    top: -1em;
+    display: block;
+    width: 18em;
+}
+
+/* This will correct position of nav btn grp and prof*/
+.row-nav-pos {
+    position: relative;
+    top: 1em;
+}
+
+.row-nav-btn-grp {
+    position: relative;
+    top: 1.5em;
+}
+
+.form-pos-btn {
+    position: relative;
+    top: .5em;
+}
+
+/*Header Buttons*/
+
+/*Clock in btn*/
+#lbl-not-clockin {
+    color: #D24E28 !important;
+    display: none;
+}
+
+#btn-clockin {
+    border-radius: .2em;
+    display: none;
+}
+
+/*Clock out btn*/
+#btn-clockout {
+    border-radius: .2em;
+    margin-right: 1em;
+    display: none;
+}
+
+/*Lunch in btn*/
+#btn-lunch {
+    position: relative;
+    top: 0.4em;
+    border-radius: .2em;
+    background-color: #FE5722;
+    border: 1px solid #FE5722;
+    display: none;
+}
+
+#btn-lunch:hover {
+    background-color: #da3805;
+    border: 1px solid #da3805;
+}
+
+#btn-lunch:focus {
+    box-shadow: 0 0 0 3px rgba(167, 116, 40, 0.5);
+}
+
+/*Modal button*/
+#btn-start-lunch {
+    color: #ffffff;
+    border-radius: .2em;
+    background-color: #FE5722;
+    border: 1px solid #FE5722;
+    display: none;
+}
+
+#btn-cancel-lunch {
+    border-radius: .2em;
+    margin-top: 1em;
+    display: none;
+}
+
+.time-counter {
+    text-align: center;
+    background-color: #fff;
+    font-size: 4em;
+    position: relative;
+    display: none;
+}
+
+#btn-end-lunch {
+    color: #ffffff;
+    border-radius: .2em;
+    background-color: #FE5722;
+    border: 1px solid #FE5722;
+    display: none;
+}
+
+/*Clock display*/
+.ClockDisplay {
+    color: #ffffff;
+    width: 6em;
+    float: left;
+    font-size: 1.2em;
+    position: relative;
+}
+
+.ClockDisplayIcon {
+    color: #6145B6;
+    font-size: 1.5em;
+    position: relative;
+    bottom: .1em;
+}
+
+/*Profile Pic*/
+#profile-pic {
+    width: 4.5em;
+    height: 4.5em;
+    border-radius: 50%;
+    margin-right: 1em;
+    background-color: #191919;
+}
+
+#profile-btn {
+    background-color: #191919;
+    border-bottom: 0;
+    border-top: 0;
+    border-right: 0;
+    border-left: 2px solid #6145B6;
+    opacity: 1;
+}
+
+#profile-btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0;
+}
+
+#profile-btn-right {
+    background-color: #191919;
+    border: 0;
+}
+
+#profile-btn-right:focus {
+    box-shadow: 0 0 0 0;
+    border: 0;
+}
+
+.profile-nav:hover {
+    background: linear-gradient(to right, #6832B8, #384AC8);
+    color: #ffffff !important;
+}
+
+/*Carrat btn*/
+.navbar-nav-carrat {
+    position: relative;
+    top: 2em;
+    right: .9em;
+}
+
+.navbar-nav-carrat.dropdown-toggle {
+    background-color: #191919 !important
+}
+
+/*time position*/
+.navbar-nav-time {
+    position: relative;
+    top: 1.9em;
+}
+
+/*Panel styling*/
+.panel-default > .panel-heading {
+    color: #fff;
+    background: linear-gradient(to right, #6832B8, #384AC8);
+    border-color: #ddd;
+}
+
+.panel-body {
+    padding: 15px;
+    background-color: #F8F8F8;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #F8F8F8;
+    border: 1px solid #ddd;
+}
+
+/*Main Container*/
+.container.main-content {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+    top: 8em;
+}
+
+.row-panel-top {
+    margin-top: 2em;
+}
+
+/*Modal Styling*/
+.modal-custom {
+    width: 17%;
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    background: linear-gradient(to right, #6832B8, #384AC8);
+    color: #ffffff;
+}
+
+/*Panel styling*/
+.panel-big-con {
+    width: 70%;
+    position: relative;
+    left: 22%;
+    right: 22%;
+}
+
+.panel-big-con-adp {
+    width: 75%;
+    position: relative;
+    left: 22%;
+    right: 22%;
+}
+
+
+.panel-big-con-2 {
+    width: 70%;
+    position: relative;
+    left: 22%;
+    right: 22%;
+    margin-bottom: 8%;
+}
+
+.panel-small-log {
+    position: relative;
+    left: 45%;
+    width: 72%;
+}
+
+.panel-small-quicklinks {
+    width: 65%;
+    position: relative;
+    left: 19%;
+}
+
+/*@media styling*/
+
+/*hide nav clock and resize prof row*/
+@media only screen and (max-width: 1024px) {
+
+    .row-nav-pos {
+        width: 22%;
+        top: -1em;
+    }
+
+    .ClockDisplay {
+        display: none;
+    }
+
+    .navbar-nav-time {
+        display: none;
+    }
+
+    .row-display-none {
+        display: none;
+    }
+
+    .row-chart {
+        width: 100%;
+    }
+
+    .row-panel-top {
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+}

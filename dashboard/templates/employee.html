@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/leave.css" %}">
+{% endblock %}
+
+{% block main-head %}
+    <a class="navbar-brand" href="{% url 'dashboard:dashboard-hr' %}" style="width:20%;">
+        <img src="{% static "img/motime-logo-solid-01.png" %}" alt="MoTime" style="width:17em;">
+    </a>
+{% endblock %}
+
+{% block main-sidebar %}
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu side-nav " href="{% url 'dashboard:dashboard-hr' %}">
+                <span class="side-nav"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
+                HR Dashboard
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu side-nav " href="#">
+                <span class="side-nav"><i class="fa fa-list" aria-hidden="true"></i></span>
+                Employee Lists
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu side-nav " href="{% url 'dashboard:adp-view' %}">
+                <span class="side-nav"><i class="fa  fa-list" aria-hidden="true"></i></span>
+                ADP Report
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu side-nav " href="#">
+                <span class="side-nav"><i class="fa  fa-calendar-plus-o" aria-hidden="true"></i></span>
+                Add Employee
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu" href="#">
+                <span class="side-nav"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                Departments
+            </a>
+        </li>
+        <li class="nav-item nav-list-side">
+            <a class="nav-link side-bar-menu" href="#">
+                <span class="side-nav"><i class="fa fa-user-times" aria-hidden="true"></i></span>
+                Holidays
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block main-body %}
+    <div class="row row-panel-top row-panel-top">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-big-con-adp">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Adp Report
+                    </h3>
+                </div>
+                {# ADP form#}
+                <div class="panel-body">
+                    {# ADP Table #}
+                    <table id="emp_table" class="display" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th scope="col">Employee ID</th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Employee Email</th>
+                            <th scope="col">Employee Birthday</th>
+                            <th scope="col">Team</th>
+                        </tr>
+                        </thead>
+
+                        {% for emp in emp_details %}
+                            <tr>
+                                <td>{{ emp }}</td>
+                                <td>{{ emp }}</td>
+                                <td>{{ emp }}</td>
+                                <td>{{ emp }}</td>
+                                <td>{{ emp }}</td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+    <script src="{% static "js/leave.js" %}"></script>
+    <script type="text/javascript">
+        jquery_run('{% url "leave:leave_create" %}');
+        $(document).ready(function () {
+            $('#emp_table').DataTable({});
+        });
+    </script>
+{% endblock %}

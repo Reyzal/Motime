@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/leave.css" %}">
+{% endblock %}
+
+{% block main-head %}
+{% endblock %}
+
+{% block main-body %}
+    <div class="row row-panel-top">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-big-con">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Manual Clock in
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {# ManualClockIn form #}
+                    <button class="btn btn-primary btn-alingment" type="button"
+                            data-toggle="collapse" data-target="#collapseExample"
+                            aria-expanded="false" aria-controls="collapseExample">
+                        Request Manual Clock in
+                    </button>
+
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body" style="background-color: #F8F8F8;">
+                            <form method="POST" id="manual-form">
+                                {% csrf_token %}
+                                <div class="form-group row" style="margin-left: .1em;">
+                                    <div class="col-sm-2">
+                                        <label for="input_datepicker" style="font-weight: 500;">
+                                            Date to Manual Time in:
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="text" id="input_datepicker" style="" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="input_reason" style="font-weight: 500;">
+                                            Remarks/Reason:
+                                        </label>
+
+                                        <div class="input-group">
+                                             <textarea class="form-control" cols="50" rows="5" id="comment" required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-success" type="submit" style="">Request</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    {# ManualClockIn Table #}
+                    <table id="ot_manual" class="display" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th scope="col">Manual Date Request</th>
+                            <th scope="col">Schedule</th>
+                            <th scope="col">Manual Remarks</th>
+                            <th scope="col">Manual Approved</th>
+                            <th scope="col">Approve By</th>
+                        </tr>
+                        </thead>
+
+                        {% for manual in manual %}
+                            <tr>
+                                <td>{{ manual.manual_date_request }}</td>
+                                <td>{{ schedule }}</td>
+                                <td>{{ manual.manual_remarks }}</td>
+                                <td>{{ manual.manual_approved_desc }}</td>
+                                <td>{{ manual.approve_by }}</td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static "js/ManualClockIn.js" %}"></script>
+    <script type="text/javascript">
+        jquery_run('{% url "overtime:overtime_create" %}');
+        $(document).ready(function () {
+            $('#ot_manual').DataTable({});
+        });
+    </script>
+{% endblock %}

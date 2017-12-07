@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/png" href="{% static "img/favicon.png" %}"/>
+
+
+    <!-- Bootstrap CSS -->
+    {#    <link rel="stylesheet" href="{% static 'packages/bootstrap/dist/css/bootstrap.min.css' %}">#}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'packages/font-aswesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'packages/datatables/datatables.min.css' %}">
+
+
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+
+    {% block stylesheet %}
+    {% endblock %}
+</head>
+
+<title>MoTime</title>
+
+
+<body>
+
+{# Navigations #}
+<nav class="navbar navbar-inverse fix-nav">
+    <div class="container-fluid">
+        {# Logo #}
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'dashboard:dashboard' %}">
+                <img class="" src="{% static 'img/motime-logo-solid-01.png' %}" alt="MoTime">
+            </a>
+        </div>
+        {# END Logo #}
+
+        {# Button control #}
+        <ul class="nav navbar-nav row-nav-btn-grp">
+            <li id="main-btn-menu">
+                {# Clock in #}
+                <form class="navbar-form btn-group" method="POST" id="btn_timekeep_in">
+                    {% csrf_token %}
+                    <p id="lbl-not-clockin" class="navbar-text navbar-left">You have not clocked in
+                        yet.</p>
+
+
+                    <button id="btn-clockin" class="btn btn-success btn-lg" type="submit"
+                            value="Clock In">
+                        Clock
+                        In
+                    </button>
+                </form>
+
+                {# Clock out #}
+                <form class="btn-group form-pos-btn" method="POST" id="btn_timekeep_out">
+                    {% csrf_token %}
+                    <button id="btn-clockout" class="btn btn-danger btn-lg" type="submit"
+                            value="Clock Out">
+                        Clock
+                        Out
+                    </button>
+                </form>
+                {# Lunchbreak #}
+                <button id="btn-lunch" class="btn btn-success btn-lg">
+                    {#                            data-toggle="modal"#}
+                    {#                            data-target="#LunchModal"#}
+                    <i class="fa fa-cutlery" aria-hidden="true"></i>
+                    Take Lunchbreak
+                </button>
+
+            </li>
+        </ul>
+        {# END Button control #}
+
+        {# Profile control #}
+        <ul class="nav navbar-nav navbar-right row-nav-pos">
+            <li class="navbar-nav-time ">
+                <div style="width: 2em; float: left;">
+                        <span class="ClockDisplayIcon">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        </span>
+                </div>
+                <div class="ClockDisplay" id="MyClockDisplay"></div>
+            </li>
+            <li class="dropdown">
+                {#This will get first name only if user in user table#}
+                {% if user.is_authenticated %}
+                    <div class="btn-group">
+                        <button id='profile-btn' type="button" class="btn btn-danger disabled">
+                            <img id="profile-pic" src="{{ emp_detail.profile_pic.url }}"
+                                 alt="profile pic">
+                            {{ user.get_full_name }}
+                        </button>
+
+                        <a class="dropdown-toggle navbar-nav-carrat" data-toggle="dropdown">
+                            <span class="caret" id="caret-style"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item profile-nav"
+                                   href="{% url 'login:account_settings' %}">
+                                    Account Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item profile-nav"
+                                   href="{% url 'login:change_password' %}">
+                                    Change Password
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item profile-nav"
+                                   href="{% url 'login:logout' %}">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </li>
+        </ul>
+        {# END Profile control #}
+
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+
+</div>
+{# END Navigations #}
+
+
+{# Side Menu #}
+<div class="container side-bar-container">
+    {% block main-sidebar %}
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item nav-list-side">
+                <a class="nav-link side-bar-menu side-nav " href="{% url 'dashboard:dashboard' %}">
+                    <span class="side-nav"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item nav-list-side">
+                <a class="nav-link side-bar-menu side-nav " href="{% url 'logs:logs' %}">
+                    <span class="side-nav"><i class="fa fa-list" aria-hidden="true"></i></span>
+                    Logs
+                </a>
+            </li>
+            <li class="nav-item nav-list-side">
+                <a class="nav-link side-bar-menu side-nav " href="{% url 'leave:leave' %}">
+                    <span class="side-nav"><i class="fa  fa-calendar-plus-o" aria-hidden="true"></i></span>
+                    Leave
+                </a>
+            </li>
+            <li class="nav-item nav-list-side">
+                <a class="nav-link side-bar-menu" href="{% url 'overtime:overtime' %}">
+                    <span class="side-nav"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                    Overtime
+                </a>
+            </li>
+            <li class="nav-item nav-list-side">
+                <a class="nav-link side-bar-menu" href="{% url 'manualclockin:manualclockin' %}">
+                    <span class="side-nav"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    Request Manual Time In
+                </a>
+            </li>
+        </ul>
+    {% endblock %}
+</div>
+{# END Side Menu #}
+
+{# Main container #}
+<div class="container main-content">
+    {% block main-body %}
+    {% endblock %}
+</div>
+{# END Main container #}
+
+{# Lunch Modal #}
+
+<!-- Modal -->
+<div id="LunchModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-custom">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                {#                <button type="button" class="close" data-dismiss="modal">&times;</button>#}
+                {#                <h4 class="modal-title">Lunchbreak</h4>#}
+                <h4 class="modal-title">Mood Survery</h4>
+            </div>
+            <div class="modal-body">
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">How are you today?</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Happy</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input type="checkbox" value="" disabled>Sad</label>
+                </div>
+
+                <div class="checkbox disabled">
+                    <label><input type="checkbox" value="" disabled>In  love</label>
+                </div>
+
+                <form class="btn-group" method="POST" id="btn_lunch_in" style="width: 100%;">
+                    {% csrf_token %}
+                    <button id="btn-question" class="btn btn-sm btn-block" type="submit" value="Clock In">
+                        Final Answer
+                    </button>
+                </form>
+
+
+                {# before lunch break content #}
+                {#                <form class="btn-group" method="POST" id="btn_lunch_in" style="width: 100%;">#}
+                {#                    {% csrf_token %}#}
+                {#                    <button id="btn-start-lunch" class="btn btn-lg btn-block" type="submit" value="Started Lunch">#}
+                {#                        <i class="fa fa-cutlery" aria-hidden="true"></i>#}
+                {#                        Start Lunchbreak#}
+                {#                    </button>#}
+                {#                </form>#}
+                {##}
+                {#                <button id="btn-cancel-lunch" class="btn btn-sm btn-block" data-dismiss="modal">#}
+                {#                    Cancel#}
+                {#                </button>#}
+                {##}
+                {# on lunch break content #}
+                {#                <div id="div-counter" style="text-align: center">#}
+                {#                    <span class="time-counter">00:00:00</span>#}
+                {#                </div>#}
+                {##}
+                {#                <button id="btn-end-lunch" class="btn btn-sm btn-block">#}
+                {#                    End Lunchbreak#}
+                {#                </button>#}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{# END Lunch Modal #}
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script type="text/javascript" src="{% static 'packages/jquery/jquery-3.2.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'packages/jquery/Popper.js' %}"></script>
+<script type="text/javascript" src="{% static 'packages/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'packages/chart/Chart.bundle.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'packages/datatables/datatables.min.js' %}"></script>
+<script type="text/javascript" src="{% static "js/function.js" %}"></script>
+<script type="text/javascript" src="{% static "js/base.js" %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        showTime();
+        BtnControl('{% url "dashboard:clock-in" %}', '{% url "dashboard:clock-out" %}', '{% url "dashboard:lunch-in" %}');
+        initialize_btn({{ action_flag }});
+    });
+</script>
+{% block javascript %}
+{% endblock %}
+</body>
+
+</html>

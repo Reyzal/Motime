@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/account_settings.css" %}">
+{% endblock %}
+
+{% block main-body %}
+    <div class="row row-panel-top">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-big-con">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Account Settings
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {% csrf_token %}
+                    <form method="POST" id="account-form" enctype="multipart/form-data">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img class="profile-pic-settings"
+                                         src="{{ emp_detail.profile_pic.url }}"
+                                         alt="profile">
+                                </div>
+
+
+                                <div class="col-md-9">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <label class="lbl-account-settings" for="inpt_fname">First name</label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_fname" type="text"
+                                                           value="{{ emp_detail.emp_firstname }}" disabled>
+                                                </div>
+
+                                                <label class="lbl-account-settings" for="inpt_bday">Birthday</label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_bday" type="text"
+                                                           value="{{ emp_detail.emp_birthdate.astimezone.date }}"
+                                                           disabled>
+                                                </div>
+
+                                                <label class="lbl-account-settings" for="inpt_status">
+                                                    Employment Status
+                                                </label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_status" type="text"
+                                                           value="{{ emp_status }}" disabled>
+                                                </div>
+
+                                                <label class="lbl-account-settings" for="inpt_team"
+                                                       style="padding-right: 1em;">Team</label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_team" type="text"
+                                                           value="{{ emp_detail.emp_team }}" disabled>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <label class="lbl-account-settings" for="inpt_mname">Middle name</label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_mname" type="text"
+                                                           value="{{ emp_detail.emp_middlename }}" disabled>
+                                                </div>
+
+                                                <label class="lbl-account-settings" for="inpt_gender">Gender</label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_gender" type="text"
+                                                           value="{{ emp_gender }}" disabled>
+                                                </div>
+
+                                                <label class="lbl-account-settings" for="inpt_wave"
+                                                       style="padding-right: 1em;">Wave</label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_wave" type="text"
+                                                           value="{{ emp_detail.emp_wave_no }}" disabled>
+                                                </div>
+
+                                                <label class="lbl-account-settings" for="inpt_position"
+                                                       style="padding-right: 1em;">Position</label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_position" type="text"
+                                                           value="{{ emp_position }}" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <label class="lbl-account-settings" for="inpt_lname">Last name</label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_lname" type="text"
+                                                           value="{{ emp_detail.emp_lastname }}" disabled>
+                                                </div>
+
+                                                <label class="lbl-account-settings" for="inpt_leave">Leave
+                                                    Credit</label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_leave" type="text"
+                                                           value="{{ emp_detail.emp_leave_credit }}" disabled>
+                                                </div>
+
+                                                <label class="lbl-account-settings" for="inpt_hire">
+                                                    Hired Date
+                                                </label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_hire" type="text"
+                                                           value="{{ emp_detail.emp_date_hired.astimezone.date }}"
+                                                           disabled>
+                                                </div>
+
+
+                                                <label class="lbl-account-settings" for="inpt_department">
+                                                    Department
+                                                </label>
+                                                <div class="input-group">
+                                                    <input class="inpt-account-settings" id="inpt_department"
+                                                           type="text"
+                                                           value="{{ emp_department }}" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static "js/account_settings.js" %}"></script>
+    {#    <script type="text/javascript">#}
+    {#        // this will prevent reload on submit#}
+    {#        $('#account-form').on('submit', function (event) {#}
+    {#            event.preventDefault();#}
+    {#            update_profile_pic('{% url "login:update_profile" %}');#}
+    {#        });#}
+    {#    </script>#}
+{% endblock %}
